@@ -1,0 +1,189 @@
+# This file contains pin mappings for the stock 2020 Creality Ender 3
+# Pro with the 32-bit Creality 4.2.2 board. To use this config, during
+# "make menuconfig" select the STM32F103 with a "28KiB bootloader" and
+# serial (on USART1 PA10/PA9) communication.
+
+# If you prefer a direct serial connection, in "make menuconfig"
+# select "Enable extra low-level configuration options" and select
+# serial (on USART3 PB11/PB10), which is broken out on the 10 pin IDC
+# cable used for the LCD module as follows:
+# 3: Tx, 4: Rx, 9: GND, 10: VCC
+
+# Flash this firmware by copying "out/klipper.bin" to a SD card and
+# turning on the printer with the card inserted. The firmware
+# filename must end in ".bin" and must not match the last filename
+# that was flashed.
+
+# See docs/Config_Reference.md for a description of parameters.
+
+[stepper_x]
+step_pin: PB9
+dir_pin: PC2
+enable_pin: !PC3
+microsteps: 16
+rotation_distance: 40
+endstop_pin: ^PA5
+position_endstop: 0
+position_max: 250 #235
+homing_speed: 50
+
+[stepper_y]
+step_pin: PB7
+dir_pin: PB8
+enable_pin: !PC3
+microsteps: 16
+rotation_distance: 40
+endstop_pin: ^PA6
+position_endstop: -11
+position_min: -11
+position_max: 235
+homing_speed: 50
+
+[stepper_z]
+step_pin: PB5
+dir_pin: !PB6
+enable_pin: !PC3
+microsteps: 16
+rotation_distance: 8
+endstop_pin: probe:z_virtual_endstop #^PA7
+#position_endstop: 0.0
+position_min: -2
+position_max: 250
+
+[extruder]
+max_extrude_only_distance: 100.0
+step_pin: PB3
+dir_pin: PB4
+enable_pin: !PC3
+microsteps: 16
+rotation_distance: 8.036 #7.980#bmg default: 7.710# ender3 stock: 32.6857 #default: 34.406
+nozzle_diameter: 0.400
+filament_diameter: 1.750
+heater_pin: PA1
+sensor_type: EPCOS 100K B57560G104F
+sensor_pin: PC5
+#control: pid
+# tuned for stock hardware with 200 degree Celsius target
+#pid_Kp: 21.527
+#pid_Ki: 1.063
+#pid_Kd: 108.982
+min_temp: 0
+max_temp: 250
+pressure_advance: 0.415
+
+[heater_bed]
+heater_pin: PA2
+sensor_type: EPCOS 100K B57560G104F
+sensor_pin: PC4
+control: pid
+# tuned for stock hardware with 50 degree Celsius target
+pid_Kp: 54.027
+pid_Ki: 0.770
+pid_Kd: 948.182
+min_temp: 0
+max_temp: 130
+
+[fan]
+pin: PA0
+
+[mcu]
+serial: /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
+restart_method: command
+
+[printer]
+kinematics: cartesian
+max_velocity: 300
+max_accel: 4500
+max_z_velocity: 5
+max_z_accel: 100
+
+[display]
+lcd_type: st7920
+cs_pin: PB12
+sclk_pin: PB13
+sid_pin: PB15
+encoder_pins: ^PB14, ^PB10
+click_pin: ^!PB2
+
+[safe_z_home]                         # enable for BLTouch
+home_xy_position: 122, 117 #157.5,120.5
+speed: 100
+z_hop: 10
+z_hop_speed: 5
+
+[bltouch]
+sensor_pin: ^PB1
+control_pin: PB0
+x_offset: 0#-44
+y_offset: -38#-6
+#z_offset: 0
+
+[bed_mesh]
+speed: 80
+horizontal_move_z: 10
+mesh_min: 0,0
+mesh_max: 230,180 #201,229 #245 (max x) - 44, 235 (max y)- 6
+probe_count: 5,5
+algorithm: bicubic
+
+
+[display_status]
+
+[virtual_sdcard]
+path: ~/gcode_files
+
+[pause_resume]
+
+[include kiauh_macros.cfg]
+
+[input_shaper]
+shaper_freq_x: 84 #104.4 #64.3
+shaper_type_x: 2hump_ei
+shaper_freq_y: 51.4 # 50.2
+shaper_type_y: ei
+
+[mcu rpi]
+serial: /tmp/klipper_host_mcu
+
+[adxl345]
+cs_pin: rpi:None
+
+[resonance_tester]
+accel_chip: adxl345
+probe_points:
+    100, 100, 20  # an example
+
+# MoonCord
+[respond]
+default_type: command
+
+#*# <---------------------- SAVE_CONFIG ---------------------->
+#*# DO NOT EDIT THIS BLOCK OR BELOW. The contents are auto-generated.
+#*#
+#*# [extruder]
+#*# control = pid
+#*# pid_kp = 22.771
+#*# pid_ki = 1.133
+#*# pid_kd = 114.423
+#*#
+#*# [bed_mesh default]
+#*# version = 1
+#*# points =
+#*# 	  -0.155000, -0.130000, -0.127500, -0.050000, 0.137500
+#*# 	  -0.267500, -0.117500, -0.055000, -0.040000, 0.202500
+#*# 	  -0.227500, -0.047500, 0.005000, 0.130000, 0.195000
+#*# 	  -0.122500, 0.050000, 0.092500, 0.212500, 0.102500
+#*# 	  -0.165000, -0.157500, 0.020000, 0.157500, 0.222500
+#*# tension = 0.2
+#*# min_x = 0.0
+#*# algo = bicubic
+#*# y_count = 5
+#*# mesh_y_pps = 2
+#*# min_y = 0.0
+#*# x_count = 5
+#*# max_y = 180.0
+#*# mesh_x_pps = 2
+#*# max_x = 230.0
+#*#
+#*# [bltouch]
+#*# z_offset = 1.175
