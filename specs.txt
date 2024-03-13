@@ -1,0 +1,23 @@
+In verband met de aanschaf van een nieuwe printer en gebrek aan ruimte verkoop ik hierbij mijn omgebouwde en opgevoerde Ender3. Ik heb de standaard firmware van deze printer afgehaald en vervangen door de Klipper firmware, waardoor deze printer veel sneller kan printen tot wel 100mm/s. De hotend is ook vervangen zodat de printer op hogere temperaturen kan printen (voor printen met ABS). Doordat er een bed level sensor op zit hoeft het bed niet heel nauwkeurig afgesteld te zijn en kan de printer compenseren voor de vorm en ligging van het bed. Een leuke instap printer, die dusdanig is aangepast dat het een stuk sneller print zonder te veel printkwaliteit te verliezen.
+
+De printer is voorzien van de volgende aanpassingen:
+- Ender3 met 32 bits 24V silent mainboard
+- V6 hotend (clone)
+- Gloednieuw Creality 4.2.7 silent mainboard, waardoor je de motoren van de printer amper kunt horen
+- Gloednieuwe Manta Mk.2 toolhead voor beter part cooling
+- Dual drive BMG extruder (clone)
+- Klipper firmware en config
+- ESP32CAM
+- Originele CR touch
+- Voorzien van stuggere vering
+- Kan ABS printen
+
+De Klipper firmware vereist connectie met een computer zoals een Raspberry Pi, deze verkoop ik niet mee maar is wel nodig. Het is door Klipper niet meer mogelijk om vanaf de SD kaart te printen. De installatie van Klipper is erg eenvoudig en ik geef de configuratiebestanden mee.
+
+De buildplate van de printer heeft redelijk wat gebruikerssporen, ik raadt aan deze te vervangen door een magnetische buildplate, die zijn voor weinig te verkrijgen bij bijvoorbeeld Amazon, Aliexpress of andere webwinkels.
+
+Ik heb bij de printer ook een lack enclosure in elkaar geklust, waar de printer met een stoeptegel in past (om de trillingen te dempen), deze mag je er bij hebben.
+
+In verband met lompheid en gewicht van de printer kan ik deze niet versturen.
+
+Mocht je vragen hebben over de printer, stuur gerust een DM.
